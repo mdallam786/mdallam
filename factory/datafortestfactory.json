@@ -1,0 +1,9 @@
+{
+	"name": "datafortestfactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1b5c3453-446f-40e0-b817-e386137aca4a",
+		"tenantId": "525031ec-da56-4914-a833-63e2467e5909"
+	}
+}
