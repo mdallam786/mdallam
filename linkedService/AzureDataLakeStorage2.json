@@ -1,0 +1,35 @@
+{
+	"name": "AzureDataLakeStorage2",
+	"properties": {
+		"parameters": {
+			"kv_nm": {
+				"type": "string"
+			},
+			"Sec_nm": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://allamsa01.dfs.core.windows.net/",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"Az_kv_Nm": {
+							"value": "@linkedService().kv_nm",
+							"type": "Expression"
+						}
+					}
+				},
+				"secretName": {
+					"value": "@linkedService().Sec_nm",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
