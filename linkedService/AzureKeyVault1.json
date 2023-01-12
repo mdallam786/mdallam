@@ -9,7 +9,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://kv-adf784-dev.vault.azure.net/"
+			"baseUrl": "@{concat('https://',linkedService().Az_kv_Nm,'.vault.azure.net/')}"
 		}
 	}
 }
