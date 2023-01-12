@@ -1,0 +1,9 @@
+{
+	"name": "md-adf7894",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1afbd823-0c68-49e9-96f3-1608b4700cdb",
+		"tenantId": "30ef5a1e-0bf2-4e90-8995-e900ab4f1d4f"
+	}
+}
