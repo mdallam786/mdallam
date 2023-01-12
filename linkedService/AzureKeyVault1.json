@@ -1,6 +1,11 @@
 {
 	"name": "AzureKeyVault1",
 	"properties": {
+		"parameters": {
+			"Az_kv_Nm": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
