@@ -1,0 +1,44 @@
+{
+	"name": "ADLS_P_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"kv_nm": {
+					"value": "@dataset().Kv_nm",
+					"type": "Expression"
+				},
+				"Sec_nm": {
+					"value": "@dataset().Secret_ADLS",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"Kv_nm": {
+				"type": "string"
+			},
+			"Stg_Acc_nm": {
+				"type": "string"
+			},
+			"Container_nm": {
+				"type": "string"
+			},
+			"Secret_ADLS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": {
+					"value": "@dataset().Container_nm",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
