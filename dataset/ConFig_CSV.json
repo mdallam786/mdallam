@@ -1,0 +1,26 @@
+{
+	"name": "ConFig_CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"kv_nm": "kv-adf784-dev",
+				"Sec_nm": "adlssecret7894"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "config.csv",
+				"fileSystem": "config"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
