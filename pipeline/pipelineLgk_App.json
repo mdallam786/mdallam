@@ -5,7 +5,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -72,15 +79,120 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://md7894.azurewebsites.net:443/api/mdlgkappwrkflow/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=gD3dhTNHsZfHI0-QVGHZS04HE_gKD8fZAgB_gTHtym0",
+					"url": {
+						"value": "@variables('Logic_url')",
+						"type": "Expression"
+					},
 					"method": "POST",
 					"body": {
-						"value": "{\"Body_Message\": \"Test email for checking Logic App.\",\n\"Recipient_Email\": \"gocrezy75@gmail.com\",\n\"Subject_Message\": \"ADF Ingestion\"}",
+						"value": "{\"Body_Message\": \"Test email for checking Logic App.\",\n\"Recipient_Email\": \"@{variables('Recipient_ID')}\",\n\"Subject_Message\": \"ADF Ingestion\"}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ConFig_CSV",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Logic_url",
+					"value": {
+						"value": "@activity('Lookup1').output.value[0].URL",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Recipient_ID",
+					"value": {
+						"value": "@activity('Lookup1').output.value[0].Recipient_ID",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "secret",
+					"value": {
+						"value": "@activity('Lookup1').output.value[0].Secret_Nm",
 						"type": "Expression"
 					}
 				}
 			}
 		],
+		"variables": {
+			"Logic_url": {
+				"type": "String"
+			},
+			"Recipient_ID": {
+				"type": "String"
+			},
+			"secret": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
