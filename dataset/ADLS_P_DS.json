@@ -26,7 +26,8 @@
 				"type": "string"
 			},
 			"Secret_ADLS": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "adlssecret7894"
 			}
 		},
 		"annotations": [],
