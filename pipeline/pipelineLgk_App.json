@@ -26,22 +26,29 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "ADLS_P_DS",
+						"referenceName": "Binary1_ADLS_DS",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
+						"referenceName": "ADLS_P_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"Kv_nm": "kv-adf784-dev",
+							"Stg_Acc_nm": "allamsa01",
+							"Container_nm": "01allam",
+							"Secret_ADLS": "adlssecret7894"
+						}
 					}
 				]
 			}
