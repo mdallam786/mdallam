@@ -85,7 +85,7 @@
 					},
 					"method": "POST",
 					"body": {
-						"value": "{\"Body_Message\": \"Test email for checking Logic App.\",\n\"Recipient_Email\": \"@{variables('Recipient_ID')}\",\n\"Subject_Message\": \"ADF Ingestion\"}",
+						"value": "{\"Body_Message\": \"Test email for checking Logic App.\",\n\"Recipient_Emails\": \"@{variables('Recipient_ID')}\",\n\"Subject_Message\": \"ADF Ingestion\"}",
 						"type": "Expression"
 					}
 				}
