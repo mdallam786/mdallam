@@ -1,5 +1,13 @@
 {
 	"name": "md-adf7894",
+	"properties": {
+		"globalParameters": {
+			"Environment_Global": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
